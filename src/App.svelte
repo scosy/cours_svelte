@@ -1,26 +1,27 @@
 <script>
+  import Card from "./Card.svelte";
+
   let toggle = false;
-  function toggleClass() {
-    toggle = !toggle;
-  }
+
+function fonction(event) {
+  console.log(`chang: ${event.detail.txt}`)
+}
+function toggleF() {
+  toggle = !toggle
+}
 </script>
 
-<button on:click={toggleClass} >Toggle le contenu</button>
+<h1>Je suis le parent</h1>
+<button on:click={toggleF} >Toggle</button>
 
-<div class={toggle ? 'visible' : 'invisible'}>
-  <h2>Voici le contenu</h2>
-  <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsam porro quae explicabo minima est nisi corrupti fuga tempora repellendus animi.</p>
-</div>
+{#if toggle}
+<Card on:info-carte={fonction}>
+  <h2>Mon titre depuis le parent</h2>
+  <div slot="contenu">
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum maiores quo ad? Cum eos maxime ipsam repudiandae odit architecto aspernatur, libero, ea quibusdam consequatur sapiente.</p>
+  </div>
+</Card>
+{/if}
 
 <style>
-  .visible {
-    width: 250px;
-    height: auto;
-    padding: 10px;
-    background-color: lightblue;
-    text-align: center;
-  }
-  .invisible {
-    display: none;
-  }
 </style>
